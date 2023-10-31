@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: 91 231 79;
+  --color-secondary: 38 164 235;
+  --color-secondary-darker: 12 51 73;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
