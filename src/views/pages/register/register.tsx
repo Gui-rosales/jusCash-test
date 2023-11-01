@@ -1,52 +1,60 @@
 import { Link } from 'react-router-dom';
-import JusCashLogo from '../assets/logo-juscash';
+import JusCashLogo from '../../../assets/logo-juscash';
+import { useRegisterController } from './useRegisterController';
+import { Input } from '../../components/input';
+import { PasswordInput } from '../../components/passwordInput';
 
 export default function Register() {
+  const { register, errors, handleSubmit } = useRegisterController();
   return (
     <div className="h-screen w-full flex justify-center items-center">
       <div className="w-3/5 h-3/4 rounded-lg shadow-xl p-5 flex flex-col">
         <JusCashLogo properties="w-4/5 h-10 mx-auto" />
-        <form className="mt-8 flex-grow flex flex-col items-center gap-5">
+        <form
+          onSubmit={handleSubmit}
+          className="mt-8 flex-grow flex flex-col items-center gap-5"
+        >
           <fieldset className="flex flex-col gap-1 w-4/5">
             <label className="text-secondaryDarker">
               Seu nome completo: <span className="text-red-600">*</span>
             </label>
-            <input
-              className="border-[1px] border-secondaryDarker p-2"
-              type="text"
+            <Input
+              error={errors.name?.message}
+              {...register('name')}
             />
           </fieldset>
           <fieldset className="flex flex-col gap-1 w-4/5">
             <label className="text-secondaryDarker">
-              Seu nome completo: <span className="text-red-600">*</span>
+              E-mail: <span className="text-red-600">*</span>
             </label>
-            <input
-              className="border-[1px] border-secondaryDarker p-2"
-              type="text"
+            <Input
+              error={errors.email?.message}
+              {...register('email')}
             />
           </fieldset>
           <fieldset className="flex flex-col gap-1 w-4/5">
             <label className="text-secondaryDarker">
-              Seu nome completo: <span className="text-red-600">*</span>
+              Senha: <span className="text-red-600">*</span>
             </label>
-            <input
-              className="border-[1px] border-secondaryDarker p-2"
-              type="text"
+            <PasswordInput
+              //type="password"
+              error={errors.password?.message}
+              {...register('password')}
             />
           </fieldset>
           <fieldset className="flex flex-col gap-1 w-4/5">
             <label className="text-secondaryDarker">
-              Seu nome completo: <span className="text-red-600">*</span>
+              Confirme sua senha: <span className="text-red-600">*</span>
             </label>
-            <input
-              className="border-[1px] border-secondaryDarker p-2"
-              type="text"
+            <PasswordInput
+              error={errors.passwordConfirmation?.message}
+              {...register('passwordConfirmation')}
             />
           </fieldset>
           <fieldset className="w-4/5 flex justify-end items-center">
             <Link
-              to={'/login'}
-              className=""
+              to={'/'}
+              className="text-secondaryDarker"
             >
               Já possui uma conta? Fazer login
             </Link>

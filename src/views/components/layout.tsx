@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import { AiOutlineUserAdd } from 'react-icons/ai';
 import { HiOutlineSquares2X2 } from 'react-icons/hi2';
-import JusCashLogo from '../assets/logo-juscash';
+import { JusCashLogoWhite } from '../../assets/logo-juscash';
 
 const options = [
   {
@@ -25,11 +25,12 @@ export default function Layout() {
           to={'/'}
           className="w-4/5 mb-5"
         >
-          <JusCashLogo properties="w-full" />
+          <JusCashLogoWhite properties="w-full" />
         </Link>
 
-        {options.map((option) => (
+        {options.map((option, index) => (
           <Link
+            key={index}
             to={option.path}
             className="w-4/5 flex justify-around items-center text-white bg-primary p-2 rounded-sm transition-all ease-in-out hover:scale-105 duration-200"
           >
