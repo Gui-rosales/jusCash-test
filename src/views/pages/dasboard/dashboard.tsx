@@ -9,7 +9,7 @@ export default function Dashboard() {
 
   return (
     <div className="h-screen w-full flex justify-center items-center">
-      <div className="w-3/4 h-4/5 rounded-lg shadow-xl p-5 flex flex-col">
+      <div className="w-3/4 h-4/5 rounded-lg shadow-xl p-5 flex flex-col max-[500px]:w-[90%]">
         <JusCashLogo properties="w-4/5 h-10 mx-auto" />
         <AddLeadModal />
         <div className="w-full mt-4 flex-grow">

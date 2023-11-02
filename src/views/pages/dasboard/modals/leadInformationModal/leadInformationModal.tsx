@@ -20,7 +20,7 @@ export default function LeadInformationModal(data: LeadData) {
         onDragStart={(event) => data.onDragBeggining(event)}
         onClick={() => setModalState(true)}
         draggable
-        className="w-full p-3 rounded-lg shadow-lg flex items-center hover:cursor-pointer"
+        className="w-full p-3 rounded-lg shadow-lg flex items-center hover:cursor-pointer max-[500px]:text-[0.8rem]"
       >
         {data.fullname}
       </li>

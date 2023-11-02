@@ -143,8 +143,6 @@ export default function AddLeadModal() {
                             type="checkbox"
                             value="Honorários Sucumbenciais"
                             onChange={(event) => handleCheckboxCheck(event)}
-                            //{...register('options')}
-
                             checked={allOptionsMarked}
                             name="options"
                           />
@@ -155,7 +153,6 @@ export default function AddLeadModal() {
                             type="checkbox"
                             value="Honorários Contratuais"
                             onChange={(event) => handleCheckboxCheck(event)}
-                            // {...register('options')}
                             checked={allOptionsMarked}
                             name="options"
                           />
@@ -166,7 +163,6 @@ export default function AddLeadModal() {
                             type="checkbox"
                             value="Honorários Dativos"
                             onChange={(event) => handleCheckboxCheck(event)}
-                            // {...register('options')}
                             checked={allOptionsMarked}
                             name="options"
                           />
@@ -177,7 +173,6 @@ export default function AddLeadModal() {
                             type="checkbox"
                             value="Créditos do Autor"
                             onChange={(event) => handleCheckboxCheck(event)}
-                            //   {...register('options')}
                             checked={allOptionsMarked}
                             name="options"
                           />
