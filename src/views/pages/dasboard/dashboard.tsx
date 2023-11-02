@@ -1,17 +1,11 @@
-import React from 'react';
-import AddLeadModal from '../../components/modals/addLeadModal';
-import LeadInformationModal from '../../components/modals/leadInformationModal';
+import AddLeadModal from './modals/addLeadModal/addLeadModal';
+import LeadInformationModal from './modals/leadInformationModal/leadInformationModal';
 import JusCashLogo from '../../../assets/logo-juscash';
+import { useDashboardController } from './useDashboardController';
 
 export default function Dashboard() {
-  function onDragFinish(e: React.DragEvent<HTMLDivElement>) {
-    e.preventDefault();
-  }
-  function onDragBeggining(e: React.DragEvent<HTMLLIElement>, id: string) {
-    console.log(e);
-    e.dataTransfer.setData('id', id);
-    return;
-  }
+  const { leads, onDragBeggining, onDragOverFn, onDropFn } =
+    useDashboardController();
 
   return (
     <div className="h-screen w-full flex justify-center items-center">
@@ -20,97 +14,82 @@ export default function Dashboard() {
         <AddLeadModal />
         <div className="w-full mt-4 flex-grow">
           <div className="w-full h-full grid grid-cols-3 gap-2">
-            <div className="w-full h-full p-2 rounded-lg border-[1px]">
+            <div
+              onDragOver={(event) => onDragOverFn(event)}
+              onDrop={(event) => onDropFn(event, 'client_in_potential')}
+              className="w-full h-full p-2 rounded-lg border-[1px]"
+            >
               <h3>Cliente Potencial</h3>
               <ul className="flex-grow flex flex-col items-center p-2 gap-2">
-                <LeadInformationModal
-                  fullname="Guilherme Rosales"
-                  email="guilherme@gmail.com"
-                  phone="(65) 99999-8000"
-                  onDragBeggining={(event) =>
-                    onDragBeggining(event, 'guilherme')
-                  }
-                />
-                {/* <LeadInformationModal
-                  fullname="Guilherme Rosales"
-                  email="guilherme@gmail.com"
-                  phone="(65) 99999-8000"
-                  onDragBeggining={onDragBeggining}
-                />
-                <LeadInformationModal
-                  fullname="Guilherme Rosales"
-                  email="guilherme@gmail.com"
-                  phone="(65) 99999-8000"
-                  onDragBeggining={onDragBeggining}
-                /> */}
-                <li
-                  draggable
-                  className="w-full p-3 rounded-lg shadow-lg flex items-center"
-                >
-                  item 1
-                </li>
+                {leads &&
+                  leads.map((lead, index) => {
+                    if (lead.category === 'client_in_potential') {
+                      return (
+                        <LeadInformationModal
+                          key={index}
+                          fullname={lead.name}
+                          email={lead.email}
+                          phone={lead.phone}
+                          options={lead.options}
+                          onDragBeggining={(event) =>
+                            onDragBeggining(event, lead.name, lead.category)
+                          }
+                        />
+                      );
+                    }
+                  })}
               </ul>
             </div>
             <div
-              onDragOver={(event) => onDragFinish(event)}
-              // onDrop={(event) => }
+              onDragOver={(event) => onDragOverFn(event)}
+              onDrop={(event) => onDropFn(event, 'data_confirmed')}
               className="w-full h-full p-2 rounded-lg border-[1px]"
             >
               <h3>Dados confirmados</h3>
               <ul className="flex-grow flex flex-col items-center p-2 gap-2">
-                <LeadInformationModal
-                  fullname="Guilherme Rosales"
-                  email="guilherme@gmail.com"
-                  phone="(65) 99999-8000"
-                  onDragBeggining={(event) =>
-                    onDragBeggining(event, 'guilherme')
-                  }
-                />
-                {/* <LeadInformationModal
-                  fullname="Guilherme Rosales"
-                  email="guilherme@gmail.com"
-                  phone="(65) 99999-8000"
-                />
-                <LeadInformationModal
-                  fullname="Guilherme Rosales"
-                  email="guilherme@gmail.com"
-                  phone="(65) 99999-8000"
-                /> */}
-                <li
-                  draggable
-                  className="w-full p-3 rounded-lg shadow-lg flex items-center"
-                >
-                  item 1
-                </li>
+                {leads &&
+                  leads.map((lead, index) => {
+                    if (lead.category === 'data_confirmed') {
+                      return (
+                        <LeadInformationModal
+                          key={index}
+                          fullname={lead.name}
+                          email={lead.email}
+                          phone={lead.phone}
+                          options={lead.options}
+                          onDragBeggining={(event) =>
+                            onDragBeggining(event, lead.name, lead.category)
+                          }
+                        />
+                      );
+                    }
+                  })}
               </ul>
             </div>
-            <div className="w-full h-full p-2 rounded-lg border-[1px]">
+            <div
+              onDragOver={(event) => onDragOverFn(event)}
+              onDrop={(event) => onDropFn(event, 'lead_analysis')}
+              className="w-full h-full p-2 rounded-lg border-[1px]"
+            >
               <h3>Análise do Lead</h3>
               <ul className="flex-grow flex flex-col items-center p-2 gap-2">
-                <LeadInformationModal
-                  fullname="Guilherme Rosales"
-                  email="guilherme@gmail.com"
-                  phone="(65) 99999-8000"
-                  onDragBeggining={(event) =>
-                    onDragBeggining(event, 'guilherme')
-                  }
-                />
-                {/* <LeadInformationModal
-                  fullname="Guilherme Rosales"
-                  email="guilherme@gmail.com"
-                  phone="(65) 99999-8000"
-                />
-                <LeadInformationModal
-                  fullname="Guilherme Rosales"
-                  email="guilherme@gmail.com"
-                  phone="(65) 99999-8000"
-                />
-                <li
-                  draggable
-                  className="w-full p-3 rounded-lg shadow-lg flex items-center"
-                >
-                  item 1
-                </li> */}
+                {leads &&
+                  leads.map((lead, index) => {
+                    if (lead.category === 'lead_analysis') {
+                      return (
+                        <LeadInformationModal
+                          key={index}
+                          fullname={lead.name}
+                          email={lead.email}
+                          phone={lead.phone}
+                          options={lead.options}
+                          onDragBeggining={(event) =>
+                            onDragBeggining(event, lead.name, lead.category)
+                          }
+                        />
+                      );
+                    }
+                  })}
               </ul>
             </div>
           </div>

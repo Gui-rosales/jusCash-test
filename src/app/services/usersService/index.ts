@@ -13,7 +13,6 @@ export function createUserFn(data: CreateUserParams) {
     tempArray.push(data);
     return localStorage.setItem('users', JSON.stringify(tempArray));
   }
-  console.log(existingUsers);
   existingUsers.push(data);
   return localStorage.setItem('users', JSON.stringify(existingUsers));
 }

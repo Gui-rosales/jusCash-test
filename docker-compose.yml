@@ -1,0 +1,9 @@
+version: '3.3'
+
+services:
+  frontend-layer:
+    build:
+      context: ./
+    container_name: juscash-frontend
+    ports:
+      - 8080:8080
